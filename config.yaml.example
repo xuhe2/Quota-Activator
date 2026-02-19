@@ -1,0 +1,40 @@
+# Quota-Activator Configuration
+
+# Scheduler settings
+scheduler:
+  # Refresh interval in hours (e.g., 5 for 5-hour quota cycle)
+  interval_hours: 5
+
+  # Target times when you want fresh quota (format: HH:MM)
+  # You can specify multiple target times - they will be validated for conflicts
+  # Trigger time = target_time - interval_hours + safety_buffer_seconds
+  target_times:
+    - "12:00"
+    - "18:00"
+    - "23:00"
+
+  # Safety buffer in seconds to add after target time
+  # This ensures the old quota has fully expired (default: 60)
+  safety_buffer_seconds: 60
+
+# Platform configuration
+platform:
+  # Platform type: "anthropic" (more to be added)
+  type: "anthropic"
+
+  # API endpoint URL
+  base_url: "https://api.anthropic.com/v1/messages"
+
+  # Platform-specific options
+  options:
+    # Your API key
+    api_key: "your-api-key-here"
+
+    # Model name (default: claude-3-5-sonnet-20241022)
+    model: "claude-3-5-sonnet-20241022"
+
+    # Request timeout in seconds (default: 30)
+    timeout_seconds: 30
+
+    # Maximum retry attempts (default: 0)
+    max_retries: 1
